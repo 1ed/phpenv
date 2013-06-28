@@ -474,9 +474,6 @@ function patch_roulette() {
 
   log "Patching" "Applying patches to the source if any are applicable."
 
-  is_osx && find "$SRC_DIR/sapi" -type f -name "*.c" -exec env LANG=C sed -i '' -e 's/(built:/(built with phpenv v0.0.2:/g' {} \; || \
-            find "$SRC_DIR/sapi" -type f -name "*.c" -exec env LANG=C sed -i -e 's/(built:/(built with phpenv v0.0.2:/g' {} \;
-
   if [[ ${VERSION_MAJOR} -eq 5 && ${VERSION_MINOR} -gt 2 ]]; then
     # patch for x86_64 linking problems building with readline
     patch "$SRC_DIR/Makefile.global" "$PHPENV_ROOT/patches/readline-x86_64-fix.patch"
